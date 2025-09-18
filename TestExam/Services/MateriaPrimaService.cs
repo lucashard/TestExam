@@ -1,3 +1,5 @@
+using TestExam.Domain;
+
 namespace TestExam;
 
 public class MateriaPrimaService
