@@ -31,6 +31,19 @@ services:
     networks:
       - examnet
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8082:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    networks:
+      - examnet
+
 networks:
   examnet:
     driver: bridge
+
+volumes:
+  jenkins_home:
