@@ -2,7 +2,7 @@ using MediatR;
 
 namespace TestExam;
 
-public record CreateMateriaPrimaCommand(string Nombre) : IRequest<int>;
+public record CreateMateriaPrimaCommand(string Nombre, string Descripcion = "", decimal Cantidad = 0) : IRequest<int>;
 
 public class CreateMateriaPrimaHandler : IRequestHandler<CreateMateriaPrimaCommand, int>
 {
@@ -15,6 +15,6 @@ public class CreateMateriaPrimaHandler : IRequestHandler<CreateMateriaPrimaComma
 
     public async Task<int> Handle(CreateMateriaPrimaCommand request, CancellationToken cancellationToken)
     {
-        return await _service.CreateAsync(request.Nombre);
+        return await _service.CreateAsync(request.Nombre, request.Descripcion, request.Cantidad);
     }
 }

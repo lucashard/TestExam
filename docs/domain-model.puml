@@ -1,0 +1,55 @@
+﻿@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+hide empty methods
+hide circle
+title TestExam - Diagrama de clases del dominio
+namespace TestExam.Domain {
+    class MateriaPrima {
+        +Id : int
+        +Nombre : string
+        +Descripcion : string
+        +Cantidad : decimal
+    }
+    class Direccion {
+        +Nombre : string
+        +Altura : int
+    }
+    class Cliente {
+        +Nombre : string
+        +Apellido : string
+        +Documento : string
+        +Email : string
+        +Telefono : string
+        +Direccion : Direccion
+    }
+    class Factura {
+        +Id : int
+        +Cliente : Cliente
+        +MateriasPrimas : List<MateriaPrima>
+    }
+    class Etapas {
+        +Nombre : string
+        +Duracion : decimal
+    }
+    class Operarios {
+        +Nombre : string
+    }
+    interface IMateriaPrimaRepository {
+        +GetByIdAsync(id : int) : Task<MateriaPrima?>
+        +AddAsync(materiaPrima : MateriaPrima) : Task<int>
+    }
+}
+Factura *-- Cliente : cliente
+Factura *-- "0..*" MateriaPrima : materias primas
+Cliente *-- Direccion : direccion
+IMateriaPrimaRepository ..> MateriaPrima : usa
+note right of Etapas
+Actualmente no tiene relación
+explícita con otras clases
+end note
+note right of Operarios
+Actualmente no tiene relación
+explícita con otras clases
+end note
+@enduml

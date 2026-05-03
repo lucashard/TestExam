@@ -1,6 +1,240 @@
 @TestExam_HostAddress = http://localhost:5139
 
-GET {{TestExam_HostAddress}}/weatherforecast/
+# Ajusta estos IDs según lo creado en tu base.
+@direccionId = 1
+@clienteId = 1
+@etapaId = 1
+@operarioId = 1
+@operarioEtapaId = 1
+@facturaId = 1
+@materiaPrimaId = 1
+
+###
+### MateriaPrima - GET all
+GET {{TestExam_HostAddress}}/MateriaPrima
 Accept: application/json
+
+###
+### MateriaPrima - GET by filters
+GET {{TestExam_HostAddress}}/MateriaPrima?nombre=Hari&descripcion=trigo
+Accept: application/json
+
+###
+### MateriaPrima - GET by id
+GET {{TestExam_HostAddress}}/MateriaPrima/{{materiaPrimaId}}
+Accept: application/json
+
+###
+### MateriaPrima - POST
+POST {{TestExam_HostAddress}}/MateriaPrima
+Content-Type: application/json
+
+{
+  "nombre": "Levadura",
+  "descripcion": "Levadura seca",
+  "cantidad": 20
+}
+
+###
+### MateriaPrima - PUT
+PUT {{TestExam_HostAddress}}/MateriaPrima/{{materiaPrimaId}}
+Content-Type: application/json
+
+{
+  "id": 0,
+  "nombre": "Levadura instantanea",
+  "descripcion": "Levadura seca premium",
+  "cantidad": 25
+}
+
+###
+### Direccion - GET all
+GET {{TestExam_HostAddress}}/Direccion
+Accept: application/json
+
+###
+### Direccion - GET by id
+GET {{TestExam_HostAddress}}/Direccion/{{direccionId}}
+Accept: application/json
+
+###
+### Direccion - POST
+POST {{TestExam_HostAddress}}/Direccion
+Content-Type: application/json
+
+{
+  "nombre": "Av. Siempre Viva",
+  "altura": 742
+}
+
+###
+### Direccion - PUT
+PUT {{TestExam_HostAddress}}/Direccion/{{direccionId}}
+Content-Type: application/json
+
+{
+  "id": 0,
+  "nombre": "Av. Principal",
+  "altura": 1000
+}
+
+###
+### Cliente - GET all
+GET {{TestExam_HostAddress}}/Cliente
+Accept: application/json
+
+###
+### Cliente - GET by id
+GET {{TestExam_HostAddress}}/Cliente/{{clienteId}}
+Accept: application/json
+
+###
+### Cliente - POST
+POST {{TestExam_HostAddress}}/Cliente
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "apellido": "Diaz",
+  "documento": "30111222",
+  "email": "ana.diaz@test.com",
+  "telefono": "1134567890",
+  "direccionId": {{direccionId}}
+}
+
+###
+### Cliente - PUT
+PUT {{TestExam_HostAddress}}/Cliente/{{clienteId}}
+Content-Type: application/json
+
+{
+  "id": 0,
+  "nombre": "Ana Maria",
+  "apellido": "Diaz",
+  "documento": "30111222",
+  "email": "anamaria.diaz@test.com",
+  "telefono": "1199998888",
+  "direccionId": {{direccionId}}
+}
+
+###
+### Etapas - GET all
+GET {{TestExam_HostAddress}}/Etapas
+Accept: application/json
+
+###
+### Etapas - GET by id
+GET {{TestExam_HostAddress}}/Etapas/{{etapaId}}
+Accept: application/json
+
+###
+### Etapas - POST
+POST {{TestExam_HostAddress}}/Etapas
+Content-Type: application/json
+
+{
+  "nombre": "Mezcla"
+}
+
+###
+### Etapas - PUT
+PUT {{TestExam_HostAddress}}/Etapas/{{etapaId}}
+Content-Type: application/json
+
+{
+  "id": 0,
+  "nombre": "Coccion"
+}
+
+###
+### Operarios - GET all
+GET {{TestExam_HostAddress}}/Operarios
+Accept: application/json
+
+###
+### Operarios - GET by id
+GET {{TestExam_HostAddress}}/Operarios/{{operarioId}}
+Accept: application/json
+
+###
+### Operarios - POST
+POST {{TestExam_HostAddress}}/Operarios
+Content-Type: application/json
+
+{
+  "nombre": "Juan Perez"
+}
+
+###
+### Operarios - PUT
+PUT {{TestExam_HostAddress}}/Operarios/{{operarioId}}
+Content-Type: application/json
+
+{
+  "id": 0,
+  "nombre": "Pedro Gomez"
+}
+
+###
+### OperarioEtapa - GET all
+GET {{TestExam_HostAddress}}/OperarioEtapa
+Accept: application/json
+
+###
+### OperarioEtapa - GET by id
+GET {{TestExam_HostAddress}}/OperarioEtapa/{{operarioEtapaId}}
+Accept: application/json
+
+###
+### OperarioEtapa - POST
+POST {{TestExam_HostAddress}}/OperarioEtapa
+Content-Type: application/json
+
+{
+  "etapaId": {{etapaId}},
+  "operarioId": {{operarioId}},
+  "duracion": 3.5
+}
+
+###
+### OperarioEtapa - PUT
+PUT {{TestExam_HostAddress}}/OperarioEtapa/{{operarioEtapaId}}
+Content-Type: application/json
+
+{
+  "id": 0,
+  "etapaId": {{etapaId}},
+  "operarioId": {{operarioId}},
+  "duracion": 4.0
+}
+
+###
+### Factura - GET all
+GET {{TestExam_HostAddress}}/Factura
+Accept: application/json
+
+###
+### Factura - GET by id
+GET {{TestExam_HostAddress}}/Factura/{{facturaId}}
+Accept: application/json
+
+###
+### Factura - POST
+POST {{TestExam_HostAddress}}/Factura
+Content-Type: application/json
+
+{
+  "clienteId": {{clienteId}}
+}
+
+###
+### Factura - PUT
+PUT {{TestExam_HostAddress}}/Factura/{{facturaId}}
+Content-Type: application/json
+
+{
+  "id": 0,
+  "clienteId": {{clienteId}}
+}
 
 ###
