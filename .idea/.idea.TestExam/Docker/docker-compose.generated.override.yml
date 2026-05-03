@@ -1,0 +1,38 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  testexam:
+    build:
+      context: "C:\\Users\\lucas\\TestExam"
+      dockerfile: "TestExam/Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/JetBrains/RiderDebuggerTools/linux-x64/JetBrains.Debugger.Worker"
+    - "--runtimeconfig"
+    - "/opt/JetBrains/RiderDebuggerTools/JetBrains.Debugger.Worker.runtimeconfig.json"
+    - "--mode=server"
+    - "--frontend-port=57000"
+    - "--backend-port=57200"
+    - "--roslyn-worker-port=57400"
+    - "--timeout=60"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/JetBrains/RiderDebuggerTools"
+      RESHARPER_LOG_CONF: "/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
+    image: "testexam:dev"
+    ports:
+    - "127.0.0.1:57000:57000"
+    - "127.0.0.1:57200:57200"
+    - "127.0.0.1:57400:57400"
+    volumes:
+    - "C:\\Users\\lucas\\TestExam\\TestExam:/app:rw"
+    - "C:\\Users\\lucas\\TestExam:/src:rw"
+    - "C:\\Users\\lucas\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\lucas\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2026.1.0.1\\\
+      Linux64:/opt/JetBrains/RiderDebuggerTools"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2026.1.0.1\\bin\\backend-log.xml:/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
+    - "C:\\Users\\lucas\\AppData\\Local\\JetBrains\\Rider2026.1\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2026_5_03_16_02_35:/var/opt/JetBrains/RiderDebuggerTools:rw"
+    working_dir: "/app"
